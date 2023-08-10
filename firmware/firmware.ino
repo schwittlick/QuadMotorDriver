@@ -41,15 +41,9 @@ void loop() {
   } else {
     //motors.setM1Speed(0);
 
-    if (stepperAcc.distanceToGo() == 0) {
-      // Random change to speed, position and acceleration
-      // Make sure we dont get 0 speed or accelerations
-      delay(1000);
-      stepperAcc.moveTo(rand() % 200);
-      stepperAcc.setMaxSpeed((rand() % 200) + 1);
-      stepperAcc.setAcceleration((rand() % 200) + 1);
-    }
-    stepperAcc.run();
+      stepperAcc.setMaxSpeed(1200);
+      stepperAcc.setSpeed(1200);	
+      stepperAcc.runSpeed();
   }
 
   delay(20);
