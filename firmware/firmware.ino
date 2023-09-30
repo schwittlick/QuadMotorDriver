@@ -19,6 +19,8 @@ AccelStepper stepperAcc(AccelStepper::FULL4WIRE, 2, 3, 4, 5);
 float motorDamp = 0.3f;  // dampening motor volt
 int deadZone = 25;       // between -deadZone and +deadZone -> no motor movement
 
+int dcSpeed = 512;
+
 void setup() {
   pinMode(dcStepperToggle1Pin, INPUT);
 }
@@ -31,7 +33,7 @@ void loop() {
   if (toggle1) {
     // 0= stepper, 1=dc motor
 
-    int motor1 = map(poti1, 0, 1023, -255, 255);
+    int motor1 = map(poti1, 0, 1023, -dcSpeed, dcSpeed);
 
     if (abs(motor1) > 25) {
       motors.setM1Speed(motor1 * motorDamp);
